@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const todoList = require("../index");
+const todoList = require("../todo");
 let today = new Date().toLocaleDateString("en-CA");
 
 const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
@@ -43,7 +43,7 @@ describe("Todolist Testing", () => {
     ).toBe(true);
   });
 
-  test("retrive all todos are overdue", () => {
+  test("retrive all todos are dueToday", () => {
     let listOfTodos = dueToday();
 
     expect(
@@ -53,7 +53,7 @@ describe("Todolist Testing", () => {
     ).toBe(true);
   });
 
-  test("retrive all todos are overdue", () => {
+  test("retrive all todos are dueLater", () => {
     let listOfTodos = dueLater();
 
     expect(
