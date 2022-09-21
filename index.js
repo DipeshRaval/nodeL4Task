@@ -8,7 +8,8 @@ const todoList = () => {
     all[index].completed = true;
   };
 
-  let today = new Date().toISOString().split("T")[0];
+  let today = new Date().toLocaleDateString("en-CA");
+  // let today = new Date().toISOString().split("T")[0];
 
   const overdue = () => {
     return all.filter((todo) => {
@@ -64,12 +65,15 @@ module.exports = todoList;
 
 // var dateToday = new Date();
 // const today = formattedDate(dateToday);
+// console.log(today);
 // const yesterday = formattedDate(
 //   new Date(new Date().setDate(dateToday.getDate() - 1))
 // );
+// console.log(yesterday);
 // const tomorrow = formattedDate(
 //   new Date(new Date().setDate(dateToday.getDate() + 1))
 // );
+// console.log(typeof tomorrow);
 
 // todos.add({ title: "Submit assignment", dueDate: yesterday, completed: false });
 // todos.add({ title: "Pay rent", dueDate: today, completed: true });

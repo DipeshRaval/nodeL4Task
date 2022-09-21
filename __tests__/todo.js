@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 const todoList = require("../index");
+let today = new Date().toLocaleDateString("en-CA");
 
-const { all, markAsComplete, add } = todoList();
+const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
 
 describe("Todolist Testing", () => {
   beforeAll(() => {
@@ -30,5 +31,35 @@ describe("Todolist Testing", () => {
     expect(all[0].completed).toBe(false);
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
+  });
+
+  test("retrive all todos are overdue", () => {
+    let listOfTodos = overdue();
+
+    expect(
+      listOfTodos.every((todo) => {
+        return todo.dueDate < today;
+      })
+    ).toBe(true);
+  });
+
+  test("retrive all todos are overdue", () => {
+    let listOfTodos = dueToday();
+
+    expect(
+      listOfTodos.every((todo) => {
+        return todo.dueDate === today;
+      })
+    ).toBe(true);
+  });
+
+  test("retrive all todos are overdue", () => {
+    let listOfTodos = dueLater();
+
+    expect(
+      listOfTodos.every((todo) => {
+        return todo.dueDate > today;
+      })
+    ).toBe(true);
   });
 });
